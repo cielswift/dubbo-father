@@ -1,0 +1,17 @@
+ciel:
+  name: xiapeixin${random.uuid}
+  age: ${random.int(100)}
+  price: 55.6
+  sex : true
+  as:
+    - cat
+    - dog
+    - pig
+  mps:
+    {name: xiapeixin,age: 22}
+
+  email: 1018866480@qq.com
+  rans: ${ciel.aa:23}${ciel.name} #:23如果没有默认23
+
+
+

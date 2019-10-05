@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.ang:ang-spring-stater-autoconfig:0.0.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/ang/ang-spring-stater-autoconfig/0.0.1-SNAPSHOT/ang-spring-stater-autoconfig-0.0.1-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/ang/ang-spring-stater-autoconfig/0.0.1-SNAPSHOT/ang-spring-stater-autoconfig-0.0.1-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/ang/ang-spring-stater-autoconfig/0.0.1-SNAPSHOT/ang-spring-stater-autoconfig-0.0.1-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

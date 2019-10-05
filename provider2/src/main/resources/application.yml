@@ -1,0 +1,41 @@
+server:
+  port: 1302
+  servlet:
+    context-path: /provider2
+
+spring:
+  application:
+    name: boot-provider
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql.ciel.cl:1600/ssh-data?seUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: ciel
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: redis.ciel.cl
+    port: 6379
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+
+dubbo:
+  application:
+    name: app-provider2  #服务名称
+  registry:
+    address: 127.0.0.1:21810 #注册中心地址
+    protocol: zookeeper
+  protocol:
+    name: dubbo  #通信规则
+    port: 20881  #通信端口
+  monitor:
+    protocol: registry
+  provider: #统一提供者设置
+    version: 1.0 #声明版本
+
+

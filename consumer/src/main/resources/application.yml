@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: boot-consumer
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql.ciel.cl:1601/ssh-data?seUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: ciel
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: redis.ciel.cl
+    port: 6379
+  profiles:
+    active: dev #多文档模式, 这里是激活dev模式
+
+mybatis-plus:profiles:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+      updateStrategy: NOT_NULL  #为null 不更新
+dubbo:
+  application:
+    name: app-consumer  #服务名称
+  registry:
+    address: 127.0.0.1:21810 #注册中心地址
+    protocol: zookeeper
+    check: false  #启动不检查注册中心
+#  protocol:
+#    name: dubbo  #通信规则
+#    port: 20881  #通信端口
+#  monitor:
+#    protocol: registry
+  consumer:    #统一配置消费者
+    check: false #启动不检查提供者
+    timeout: 3000 #设置超时时间,3秒不响应就关闭
+    retries: 3 #重试次数  不算第一次,也就是是第1次调用失败后,剩余3次次数
+    version: 1.0  #使用哪一个版本的服务, * 调用任意一个版本
+    #stub: com.ciel.consumer.service.root.AppLoaclRoot  #指定本地存根
+    loadbalance: roundrobin #负载均衡机制 roundrobin轮询, LeastActive最少活跃,ConsistentHash 一致哈希,Random 随机
+
+logging:
+  config: classpath:logback-spring.xml
+
+---
+#多文档模式
+server:
+  port: 1301
+  servlet:
+    context-path: /consumers
+spring:
+  profiles: dev #多文档模式, 这里是prod模式
+---
+    #多文档模式
+server:
+  port: 1309
+  servlet:
+    context-path: /consumer
+spring:
+  profiles: prod #多文档模式, 这里是prod模式

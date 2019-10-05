@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="common" />
+        <module name="provider" />
+        <module name="the-anntion" />
+        <module name="provider2" />
+        <module name="pojo" />
+        <module name="server" />
+        <module name="consumer" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common" target="12" />
+      <module name="commons" target="12" />
+      <module name="consumer" target="12" />
+      <module name="dubbo-father" target="12" />
+      <module name="pojo" target="12" />
+      <module name="provider" target="12" />
+      <module name="provider2" target="12" />
+      <module name="server" target="12" />
+      <module name="the-anntion" target="12" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="common" options="-parameters" />
+      <module name="commons" options="-parameters" />
+      <module name="consumer" options="-parameters" />
+      <module name="dubbo-father" options="-parameters" />
+      <module name="pojo" options="-parameters" />
+      <module name="provider" options="-parameters" />
+      <module name="provider2" options="-parameters" />
+      <module name="server" options="-parameters" />
+      <module name="the-anntion" options="-parameters" />
+    </option>
+  </component>
+</project>

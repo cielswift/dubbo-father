@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ciel.mapper.AppCrud">
+
+    <resultMap id="app" type="com.ciel.pojo.App">
+
+        <association property="user" column="user_id" select="com.ciel.mapper.UserCrud.selectById"/>
+    </resultMap>
+
+    <select id="myPage" resultMap="app">
+        select app.* from ssh_application app left join ssh_user user on app.user_id = user.id
+        ${ew.customSqlSegment}
+        </select>
+
+
+    <update id="myChange">
+        update ssh_application set ${ew.sqlSet} ${ew.customSqlSegment}
+    </update>
+
+    <select id="selectByName" resultMap="app">
+        select * from ssh_application where deleted =0;
+    </select>
+    <!-- ${ew.sqlSelect} -->
+
+    <select id="appsByUserId" resultMap="app">
+        select * from ssh_application where deleted = 0 and  user_id = #{uid}
+    </select>
+</mapper>

@@ -1,0 +1,116 @@
+server:
+  port: 2300
+  servlet:
+    context-path: /provider
+
+spring:
+  application:
+    name: boot-provider
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 5MB
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+  resources:
+    static-locations: classpath:/static/ #配置静态资源路径,隔开多个
+  thymeleaf:
+    prefix: classpath:/templates/  #模板路径
+    suffix: .html
+    mode: html5
+    encoding: utf-8
+    servlet:
+      content-type: text/html
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql.ciel.cl:1600/ssh-data?seUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: ciel
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 初始化，最小，最大连接数
+      initialSize: 5
+      minidle: 5
+      maxActive: 30
+      # 获取数据库连接等待的超时时间
+      maxWait: 20000
+      # 配置多久进行一次检测，检测需要关闭的空闲连接 单位毫秒
+      timeBetweenEvictionRunsMillis: 50000
+      validationQuery: SELECT 1 FROM dual
+      # 配置监控统计拦截的filters,去掉后，监控界面的sql无法统计
+      #filters: stat,wall,log4j
+
+  redis:
+    host: redis.ciel.cl
+    port: 6379
+  profiles:
+    include: filed,alipay #引入其他配置文件,多个用,隔开
+    active: dev  # 激活dev模式
+
+  rabbitmq:
+    host: 127.0.0.1 #rabbitMQ
+    port: 5672
+    username: ciel
+    password: c
+    virtual-host: /
+#  elasticsearch:  #搜索模块 ,jeds模式
+#    jest:
+#      uris: http://127.0.0.1:9200
+  data:
+    elasticsearch:  #spring-data 模式
+      cluster-name: elasticsearch
+      cluster-nodes: 127.0.0.1:9300
+      repositories:
+        enabled: true
+  mail:
+    username: 15966504931@163.com #邮箱账户
+    password: xiapeixin7 #授权码
+    host: smtp.163.com
+    #properties: {mail.smtp.ssl.enable:true}
+  aop:
+    proxy-target-class: true #使用cglib代理
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Crud.xml
+  typeAliasesPackage: com.ciel.pojo  #实体扫描
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql
+    map-underscore-to-camel-case: true #数据库下划线转换
+  global-config:
+    db-config:
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+      updateStrategy: NOT_NULL  #为null 不更新
+      insertStrategy: NOT_NULL
+      selectStrategy: NOT_NULL
+
+logging:
+  config: classpath:logback-spring.xml
+
+fileUpload:
+  img:
+    user: C:/CustomSoftware/Nginx-Cluster/nginx-1.16.1/static/img/user/
+fileRequest:
+  img:
+    user: http://nginx.ciel.cl/img/user/
+
+xpx:
+  name: xiapeixin  #自定义启动器
+  height: 999.8
+
+#dubbo:
+#  application:
+#    name: app-provider  #服务名称
+#  registry:
+#    address: 127.0.0.1:2181 #注册中心地址
+#    protocol: zookeeper
+#  protocol:
+#    name: dubbo  #通信规则
+#    port: 20880  #通信端口
+#  monitor:
+#    protocol: registry
+#  provider: #统一提供者设置
+#    version: 1.0 #声明版本
+

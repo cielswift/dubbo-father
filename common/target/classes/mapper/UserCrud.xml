@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ciel.mapper.UserCrud">
+
+    <resultMap id="user" type="com.ciel.pojo.User">
+        <id column="id" property="id"></id>
+        <collection property="apps" column="id" select="com.ciel.mapper.AppCrud.appsByUserId" fetchType="lazy">
+        </collection>
+    </resultMap>
+
+
+    <select id="getUserById" resultMap="user">
+        select * from ssh_user where deleted = 0 and id = #{uid}
+    </select>
+
+    <select id="getUserByNameAndPassword" resultMap="user">
+        select * from ssh_user where deleted = 0 and name = #{u.name} and password = #{u.password}
+    </select>
+</mapper>
