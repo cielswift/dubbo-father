@@ -17,6 +17,7 @@
 
 <div class="panelBar" th:replace="fram/foot::foot(xin='sssssss')">底部传参给其他页面</div>
 
+<button type="button" onclick="testJson()" class="btn btn-success">testJson</button>
 </body>
 
 <script>
@@ -51,6 +52,34 @@
         })
     }
 
+
+    function testJson() {
+        $.ajax({
+            method:"post",
+            url:"/provider/app/tj",
+            contentType:"application/json",
+            data: "{\n" +
+                "  \"array\": [\n" +
+                "    1,\n" +
+                "    2,\n" +
+                "    3\n" +
+                "  ],\n" +
+                "  \"boolean\": true,\n" +
+                "  \"null\": null,\n" +
+                "  \"number\": 123,\n" +
+                "  \"object\": {\n" +
+                "    \"a\": \"b\",\n" +
+                "    \"c\": \"d\"\n" +
+                "  },\n" +
+                "  \"string\": \"Hello World\"\n" +
+                "}",
+            dataType:"json",
+            success  :function (data) {
+
+                console.warn(data);
+            }
+        })
+    }
 
 
 </script>

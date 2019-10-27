@@ -6,12 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="common" />
-        <module name="provider" />
-        <module name="the-anntion" />
         <module name="provider2" />
-        <module name="pojo" />
+        <module name="common" />
         <module name="server" />
+        <module name="provider" />
         <module name="consumer" />
       </profile>
     </annotationProcessing>

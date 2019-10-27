@@ -26,21 +26,22 @@ import java.util.Map;
 public class WebMvcConfig implements WebMvcConfigurer {
 
     @Bean
-    public FormContentFilter formContentFilter() {
+    public FormContentFilter formContentFilter() { //注册rest风格url
         return new FormContentFilter();
     }
 
-    @Override
+    @Override //手动添加一个controller
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/xiapeixin").setViewName("/fram/welcome");
         //路径映射到哪一个页面
     }
 
-    @Override
+    @Override  //注册拦截器
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new InterceptorCiel()).addPathPatterns("/**").excludePathPatterns("/error/page/**");
         //拦截的地址和排除的地址
     }
+
 
     /** 注册三大组件*/
     @Bean
@@ -56,6 +57,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Lazy
     public FilterRegistrationBean filterRegistrationBean(){
         FilterRegistrationBean frb =new FilterRegistrationBean();
+
         frb.setFilter(new MyFilter());
         frb.setUrlPatterns(Arrays.asList(new String[]{"/*"}));
         return frb;
@@ -67,6 +69,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
         slrb.setListener(new MyListener());
         return slrb;
     }
+
+
 
     /**-------------------druid数据源监控----------------------*/
     @Bean

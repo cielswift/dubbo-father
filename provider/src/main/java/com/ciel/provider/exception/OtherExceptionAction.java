@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
-@ControllerAdvice
+@ControllerAdvice //全局异常处理
 public class OtherExceptionAction {  //针对某些异常进程处理
 
     @ExceptionHandler({RuntimeException.class})

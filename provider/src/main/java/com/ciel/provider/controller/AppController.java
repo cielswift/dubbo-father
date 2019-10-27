@@ -17,6 +17,7 @@ import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 
@@ -44,12 +46,30 @@ public class AppController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     Logger logger = LoggerFactory.getLogger(getClass());
 
     public void run() {
         logger.trace("ss");
         logger.debug("999");
         logger.warn("ss");
+    }
+
+
+    @RequestMapping("/tj")
+    public String jsonObject(@RequestBody Map test) throws JSONException {
+        JSONObject j = new JSONObject(test);
+
+
+        return j.toString();
+    }
+
+    @RequestMapping("/http")
+    public String http(){
+        String forObject = restTemplate.getForObject("https://www.cnblogs.com/yifeiyaoshangtian/p/10282680.html", String.class);
+        return forObject;
     }
 
     @RequestMapping("/asyn") //异步处理

@@ -37,7 +37,7 @@ import java.util.Map;
 @MapperScan("com.ciel.mapper")
 
 @ImportResource(locations = "classpath:app-other.xml") //导入其他配置文件
-@Import({SelectImp.class, Other2.class, SelectDef.class}) //导入其他bean
+@Import({SelectImp.class, Other2.class, SelectDef.class}) //导入其他bean,或者配置培类
 
 /*
 @ComponentScan(
