@@ -28,13 +28,6 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>org.apache.rocketmq</groupId>
-            <artifactId>rocketmq-client</artifactId>
-            <version>4.5.2</version>
-        </dependency>
-
-
         <dependency> <!--二维码-->
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>

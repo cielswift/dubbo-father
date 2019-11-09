@@ -9,11 +9,13 @@ import org.springframework.stereotype.Component;
 public class MyStartupRunner1 implements CommandLineRunner {
 
     //启动自执行
+//在Spring Boot启动的过程中进行一些额外的操作
 
     @Override
     public void run(String... arg0) throws Exception {
         System.out.println(">>>>>>>>>>>>>>>服务启动执行，执行加载数据等操作<<<<<<<<<<<<<");
     }
+
 
 
 }

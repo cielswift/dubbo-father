@@ -8,6 +8,7 @@ public class SelectImp implements ImportSelector {
     @Override
     public String[] selectImports(AnnotationMetadata importingClassMetadata) {
         return new String[]{"com.ciel.provider.common.Other1"};
+
     }
 
 }

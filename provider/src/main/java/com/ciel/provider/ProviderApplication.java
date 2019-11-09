@@ -39,6 +39,13 @@ import java.util.Map;
 @ImportResource(locations = "classpath:app-other.xml") //导入其他配置文件
 @Import({SelectImp.class, Other2.class, SelectDef.class}) //导入其他bean,或者配置培类
 
+//@ImportAutoConfiguration(XiaConfig.class)  //导入其他不在扫描中的配置类
+
+
+//Boot在启动的时候从类路径下的META-INF/spring.factories中获取EnableAutoConfiguration指定的值，
+// 将这些值作为自动配置类导入到容器中，自动配置类就生效
+
+
 /*
 @ComponentScan(
   value = {"com.ciel"},

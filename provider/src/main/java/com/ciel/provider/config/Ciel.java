@@ -31,7 +31,7 @@ import java.util.Map;
 public class Ciel implements Serializable{//, BeanPostProcessor {
 
     //@Lookup //总是返回新的对象,如果@Scope是prototype的; ,只能放在方法上
-    //@Lazy //针对单实例bean
+    //@Lazy //针对单实例bean,懒加载
 
     private String name;
     private Integer age;

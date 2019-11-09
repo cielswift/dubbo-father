@@ -25,4 +25,5 @@
     <select id="appsByUserId" resultMap="app">
         select * from ssh_application where deleted = 0 and  user_id = #{uid}
     </select>
+
 </mapper>

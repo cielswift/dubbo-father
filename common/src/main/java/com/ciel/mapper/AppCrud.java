@@ -22,4 +22,6 @@ public interface AppCrud extends BaseMapper<App> {
     App selectByName(String xia);
 
     List<App> appsByUserId(@Param("uid") String uid);
+
+    
 }

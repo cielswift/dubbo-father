@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.experimental.Accessors;
 
 import javax.validation.constraints.AssertFalse;
+import javax.validation.constraints.NotBlank;
 
 @AllArgsConstructor //所有参数的构造函数
 @NoArgsConstructor  //无参数的构造函数
