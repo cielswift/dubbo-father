@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ciel.mapper.RoleCrud">
+
+    <resultMap id="ROLE" type="com.ciel.pojo.Role">
+        <id column="id" property="id"></id>
+        <collection property="users" column="id" select="com.ciel.mapper.UserCrud.selectById" fetchType="lazy">
+        </collection>
+    </resultMap>
+
+
+</mapper>

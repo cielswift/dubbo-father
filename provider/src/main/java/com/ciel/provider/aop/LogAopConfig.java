@@ -5,6 +5,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @EnableAspectJAutoProxy  //开启基于注解的aop
 @Configuration
-public class LogAop {
+public class LogAopConfig {
 
 }

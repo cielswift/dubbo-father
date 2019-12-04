@@ -44,7 +44,8 @@ spring:
 
   redis:
     host: redis.ciel.cl
-    port: 6379
+    port: 6500
+
   profiles:
     include: filed,alipay #引入其他配置文件,多个用,隔开
     active: dev  # 激活dev模式
@@ -66,7 +67,7 @@ spring:
         enabled: true
   mail:
     username: 15966504931@163.com #邮箱账户
-    password: xiapeixin7 #授权码
+    password: cielswift202 #授权码
     host: smtp.163.com
     #properties: {mail.smtp.ssl.enable:true}
   aop:

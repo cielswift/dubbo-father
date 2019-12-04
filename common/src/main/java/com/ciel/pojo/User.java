@@ -19,7 +19,6 @@ public class User extends BasePojo{
     private String name;
     private String password;
 
-
     @TableField(exist = false)
     private List<App> apps = new ArrayList<>();
 
@@ -30,6 +29,12 @@ public class User extends BasePojo{
     private String headSculpturePath;
 
     private BigDecimal price;
+
+    @TableField(exist = false)
+    private List<Role> roles = new ArrayList<>();
+
+    @TableField(exist = false)
+    private List<Permissions> permissions = new ArrayList<>(); //临时权限
 
    // @NotBlank	判断字符串是否为null 或者是空串(去掉首尾空格)
    // @NotEmpty:	判断字符串是否null 或者是空串。

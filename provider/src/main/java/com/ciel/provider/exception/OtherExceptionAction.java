@@ -1,5 +1,6 @@
 package com.ciel.provider.exception;
 
+import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,10 +13,10 @@ import java.util.Map;
 @ControllerAdvice
 public class OtherExceptionAction { //全局异常处理 //针对某些异常进程处理
 
-    @ExceptionHandler({RuntimeException.class})
+    @ExceptionHandler({UnauthorizedException.class})
     public ModelAndView mav2(Exception e, HttpServletRequest request) {
         ModelAndView ma = new ModelAndView();
-        ma.addObject("err", e.toString());
+        ma.addObject("err", "权限不足 异常");
         ma.setViewName("/fram/error");
         return ma;
     }

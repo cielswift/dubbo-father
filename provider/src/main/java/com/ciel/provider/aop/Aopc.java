@@ -23,6 +23,9 @@ public class Aopc {
 
 
     @Pointcut("execution (public * com.ciel.provider.controller.AppController.*(..))")
+
+    //  对所有带有AutoLog注解的方法记录日志。
+   // @Pointcut("@annotation(com.yitian.sbadmin.common.annotation.AutoLog)")
     public void point(){}
 
     @Before("point()")  //其他类引用写全名

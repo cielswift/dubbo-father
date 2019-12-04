@@ -3,8 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title> asdasd </title>
+    <div class="panelBar" th:include="fram/head::head"></div>
 </head>
 <body>
-    我 草 尼玛
+   <button type="button" class="btn btn-warning" onclick="testJson()">test json</button>
 </body>
+
+<script>
+
+    function testJson() {
+
+        let param = {
+                name:"xiapei"
+
+        };
+
+        let pa = "id=99&name=xiapei&current=2&size=20&as=sd&as=ds";
+
+        $.ajax({
+            method:"post",
+            url:"/provider/app/param",
+           // contentType:"application/json;charset=utf-8",
+            data: JSON.stringify(param),
+            dataType:"json",
+            success  :function (data) {
+                console.warn(data);
+            }
+        })
+    }
+</script>
 </html>

@@ -1,10 +1,13 @@
 package com.ciel.provider.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ciel.pojo.App;
 import com.ciel.service.AppServicer;
 import com.ciel.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,7 +64,6 @@ public class AppController {
     @RequestMapping("/tj")
     public String jsonObject(@RequestBody Map test) throws JSONException {
         JSONObject j = new JSONObject(test);
-
 
         return j.toString();
     }
@@ -206,6 +208,12 @@ public class AppController {
         return s;
     }
 
+
+    @GetMapping("/wel")
+    public ModelAndView wel(){
+        return new ModelAndView("fram/welcome");
+    }
+
     @PostMapping(value = "/text")
     public ModelAndView text(@RequestParam("text") String text) {
         String s = HtmlUtils.htmlEscape(text);
@@ -217,6 +225,17 @@ public class AppController {
         model.setViewName("fram/index");
         return model;
     }
+
+    @PostMapping(value = "/partest")
+    public List<App> partest(@RequestBody Map map){
+        return null;
+    }
+
+    @PostMapping(value = "/param")
+    public List<App> param(App app,Page page,@RequestParam("as") List<String> as){
+        return null;
+    }
+
 
 //    @RequestParam用来接收:
 //

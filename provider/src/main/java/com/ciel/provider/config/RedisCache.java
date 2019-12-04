@@ -19,6 +19,7 @@ import java.time.Duration;
 public class RedisCache {
 
     @Bean
+    @Primary
     public RedisTemplate redisTemplateJSON(RedisConnectionFactory redisConnectionFactory){
         RedisTemplate redisTemplate = new RedisTemplate();
         redisTemplate.setConnectionFactory(redisConnectionFactory);

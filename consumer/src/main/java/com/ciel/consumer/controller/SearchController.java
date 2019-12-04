@@ -55,11 +55,4 @@ public class SearchController {
        return list;
     }
 
-    @RequestMapping(value = "/partest",method = RequestMethod.POST)
-    public List<App> partest(@RequestBody App app){
-
-
-        return null;
-    }
-
 }

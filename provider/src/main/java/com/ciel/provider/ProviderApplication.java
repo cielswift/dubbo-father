@@ -1,29 +1,19 @@
 package com.ciel.provider;
 
-import com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan;
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
+import com.ciel.cache.RedisMybatisCache;
 import com.ciel.provider.common.Other2;
 import com.ciel.provider.common.SelectDef;
 import com.ciel.provider.common.SelectImp;
-import com.ciel.provider.condit.TypeF;
-import com.ciel.provider.config.Ciel;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
-import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
-import org.springframework.context.annotation.*;
-import org.springframework.jmx.export.MBeanExporter;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @EnableDubbo(scanBasePackages = {"com.ciel.provider.server.impl"}) //开启基于注解的dubbo,扫描服务实现
 //@ImportResource  //导入一个资源配置文件,可以是duboo的
@@ -68,9 +58,14 @@ import java.util.Map;
 public class ProviderApplication {
 
     //  #@PersistenceContext() //通过工厂对象来创建并注入
-//
+
+
 //#  @Autowired
 //#  private AutowireCapableBeanFactory acbf; spring的上下文对象,可以直接获取bean
+
+
+ //   @Configurable(preConstruction = true) //这个注解的作用是：告诉Spring在构造函数运行之前将依赖注入到对象中
+    //这就就算当前这个对象是new 出来也能使用@@Autowired自动注入了
 
     public static void main(String[] args) {
         SpringApplication.run(ProviderApplication.class, args);

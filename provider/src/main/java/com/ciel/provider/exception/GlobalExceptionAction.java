@@ -19,4 +19,5 @@ public class GlobalExceptionAction implements HandlerExceptionResolver {
         return mav;
         //如果希望返回跳转页面，则需要实现HandlerExceptionResolver类来进行异常处理并跳转。
     }
+
 }

@@ -4,22 +4,33 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title> login </title>
+    <title> 登录 </title>
 </head>
+<div class="panelBar" th:include="fram/head::head"></div>
 <body>
-
 
     <th:block th:if="${errMsg != null}">
         <h3 th:text="${errMsg}"></h3>
     </th:block>
 
-   <form th:action="@{/security/login}"  action="" method="post" enctype="multipart/form-data">
-        userName<input type="text" name="name"/>
-        password<input type="password" name="password"/>
-        photo<input type="file" name="headSculpture"/>
-        <input type="submit" value="gggggggggggggggg"/>
+   <form th:action="@{/login}"  action="" method="post" enctype="multipart/form-data">
+
+       <div class="form-group">
+           userName<input type="text" name="username"/>
+       </div>
+
+       <div class="form-group">
+           password<input type="password" name="password"/>
+       </div>
+
+       <div>
+           <input type="file" name="headSculpture"/>
+           <input type="submit" class="btn btn-success" value="go"/>
+       </div>
    </form>
 
+
+    <a th:href="@{/logout}" class="btn btn-warning"> log out </a>
 </body>
 
 <script>

@@ -10,6 +10,8 @@ import java.util.Date;
 public class MpAuto implements MetaObjectHandler {
 
 
+    //mybatis plus 全局自动填充
+
     @Override
     public void insertFill(MetaObject metaObject) {
         this.setFieldValByName("createDate", new Date(), metaObject); //mp自动填充
