@@ -23,7 +23,7 @@ public class RedisCache {
     public RedisTemplate redisTemplateJSON(RedisConnectionFactory redisConnectionFactory){
         RedisTemplate redisTemplate = new RedisTemplate();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
-        redisTemplate.setDefaultSerializer(RedisSerializer.json());
+        redisTemplate.setDefaultSerializer(RedisSerializer.string());
         return redisTemplate;
     }
 

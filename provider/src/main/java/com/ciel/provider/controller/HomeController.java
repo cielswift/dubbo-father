@@ -14,6 +14,8 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,6 +43,13 @@ public class HomeController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AutowireCapableBeanFactory acbf;
+
+    @Autowired
+    private ApplicationContext applicationContext;
+
 
     @RequestMapping({"/", "/index"})
     public ModelAndView index() {
@@ -92,6 +101,8 @@ public class HomeController {
                 logger.error("登录失败");
                 mav.setViewName("security/login");
             }
+
+
         }
         return mav;
     }

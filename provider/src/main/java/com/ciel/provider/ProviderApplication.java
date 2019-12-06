@@ -5,6 +5,7 @@ import com.ciel.cache.RedisMybatisCache;
 import com.ciel.provider.common.Other2;
 import com.ciel.provider.common.SelectDef;
 import com.ciel.provider.common.SelectImp;
+import com.ciel.test.Contr;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
@@ -27,7 +28,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @MapperScan("com.ciel.mapper")
 
 @ImportResource(locations = "classpath:app-other.xml") //导入其他配置文件
-@Import({SelectImp.class, Other2.class, SelectDef.class}) //导入其他bean,或者配置培类
+@Import({SelectImp.class, Other2.class, SelectDef.class, Contr.class}) //导入其他bean,或者配置培类
 
 //@ImportAutoConfiguration(XiaConfig.class)  //导入其他不在扫描中的配置类
 
