@@ -11,9 +11,13 @@ public class KafkaLince {
 
     public static Logger log = LoggerFactory.getLogger(KafkaLince.class);
 
-    @KafkaListener(topics = "ciel")
+    @KafkaListener(topics = "xiapeixin")
     public void onMessage(String message){
-        System.out.println("SHOU DAO XIAO XI:"+message);
+
+
+
         log.info(message);
     }
+
+
 }

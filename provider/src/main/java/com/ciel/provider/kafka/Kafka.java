@@ -24,18 +24,21 @@ public class Kafka {
     //启动生产 .\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic 主题名
     //启动消费 .\bin\windows\kafka-console-consumer.bat --zookeeper localhost:2181 --topic 主题名
 
+    //实际上所有的配置实现都是在org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration中完成
     @Autowired
     private KafkaTemplate<String,Object> kafkaTemplate;
 
-    @Scheduled(cron = "0/5 * * * * ?")
+    ObjectMapper format = new ObjectMapper();
+
+    @Scheduled(cron = "0/30 * * * * ?")
     public boolean send() throws JsonProcessingException {
 
         KafkaMsg message = new KafkaMsg();
         message.setId(System.currentTimeMillis());
-        message.setMsg(UUID.randomUUID().toString());
+        message.setMsg(UUID.randomUUID().toString().replace("-","").toUpperCase());
         message.setDateTime(LocalDateTime.now());
 
-        kafkaTemplate.send("ciel",new ObjectMapper().writeValueAsString(message));
+        kafkaTemplate.send("xiapeixin",format.writeValueAsString(message));
         return true;
     }
 
