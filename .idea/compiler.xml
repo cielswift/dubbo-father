@@ -14,14 +14,14 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="common" target="12" />
+      <module name="common" target="1.8" />
       <module name="commons" target="12" />
       <module name="consumer" target="12" />
       <module name="dubbo-father" target="12" />
       <module name="pojo" target="12" />
       <module name="provider" target="12" />
       <module name="provider2" target="12" />
-      <module name="server" target="12" />
+      <module name="server" target="1.8" />
       <module name="the-anntion" target="12" />
     </bytecodeTargetLevel>
   </component>
