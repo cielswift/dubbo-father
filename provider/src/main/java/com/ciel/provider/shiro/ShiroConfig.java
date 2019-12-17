@@ -32,9 +32,11 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/img/**", "anon");
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/html/**", "anon");
-       filterChainDefinitionMap.put("/aa/**", "anon");
 
-        //aoon 无需认证即可访问;
+        filterChainDefinitionMap.put("/aa/**", "anon");
+        filterChainDefinitionMap.put("/dfs/**", "anon"); //hdfs
+
+        //anon 无需认证即可访问;
         //authc 认证才能访问;
         //user RememberMe 可以访问;
         //perms[user:add] 权限

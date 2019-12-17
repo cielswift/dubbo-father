@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -37,7 +38,7 @@ public class Kafka {
     @Autowired
     private KafkaTemplate<String,Object> kafkaTemplate;
 
-    @Scheduled(cron = "0/30 * * * * ?")
+    @Scheduled(cron = "0/30 0/2 * * * ?")
     public void send() throws JsonProcessingException {
 
         kafkaTemplate.setProducerListener(producerListener()); //设置回调
@@ -52,11 +53,11 @@ public class Kafka {
         if(message.getId()%2==0){
 
             ListenableFuture<SendResult<String, Object>> obj =
-                    kafkaTemplate.send("xiapeixin",0,null, format.writeValueAsString(message));
+                    kafkaTemplate.send("cielswift",0,null, format.writeValueAsString(message));
         }else{
 
             ListenableFuture<SendResult<String, Object>> obj =
-                    kafkaTemplate.send("xiapeixin",1,null, format.writeValueAsString(message));
+                    kafkaTemplate.send("cielswift",1,null, format.writeValueAsString(message));
         }
 
         //send方法后面调用get方法即可 ,同步; 可以重载规定时间没有返回报错;

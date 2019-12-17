@@ -28,7 +28,11 @@ public class DubboConfig { //dubbo配置
     public RegistryConfig registryConfig(){
         RegistryConfig registryConfig = new RegistryConfig();
         registryConfig.setProtocol("zookeeper");
-        registryConfig.setAddress("127.0.0.1:21810,127.0.0.1:21811,127.0.0.1:21812");
+
+       // registryConfig.setAddress("127.0.0.1:21810,127.0.0.1:21811,127.0.0.1:21812");
+
+        registryConfig.setAddress("hadoop.master:21810,hadoop.slave1:21810,hadoop.slave2:21810");
+
         registryConfig.setCheck(false);
         return registryConfig;
     }

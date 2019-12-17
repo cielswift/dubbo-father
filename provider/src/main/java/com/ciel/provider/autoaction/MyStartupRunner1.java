@@ -16,6 +16,4 @@ public class MyStartupRunner1 implements CommandLineRunner {
         System.out.println(">>>>>>>>>>>>>>>服务启动执行，执行加载数据等操作<<<<<<<<<<<<<");
     }
 
-
-
 }
