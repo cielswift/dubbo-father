@@ -39,7 +39,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 //Boot在启动的时候从类路径下的META-INF/spring.factories中获取EnableAutoConfiguration指定的值，
 // 将这些值作为自动配置类导入到容器中，自动配置类就生效
 
-
 /*
 @ComponentScan(
   value = {"com.ciel"},
@@ -63,13 +62,12 @@ public class ProviderApplication {
 
     //  #@PersistenceContext() //通过工厂对象来创建并注入
 
-
 //#  @Autowired
 //#  private AutowireCapableBeanFactory acbf; spring的上下文对象,可以直接获取bean
 
 
  //   @Configurable(preConstruction = true) //这个注解的作用是：告诉Spring在构造函数运行之前将依赖注入到对象中
-    //这就就算当前这个对象是new 出来也能使用@@Autowired自动注入了
+    //这就就算当前这个对象是new出来的, 内部的字段也能使用@Autowired自动注入了; 需要aspectj 和启动aspectjAOP;
 
     public static void main(String[] args) {
         SpringApplication.run(ProviderApplication.class, args);

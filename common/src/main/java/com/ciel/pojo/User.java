@@ -46,6 +46,7 @@ public class User extends BasePojo{
 //    @NotBlank(message="用户名不能为空")  //非空校验
 //    @Length(min=3,max=6)
  //   @Valid
-
  //   @Validated
+
+
 }

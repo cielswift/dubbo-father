@@ -1,5 +1,9 @@
 package com.ciel.provider.j8;
 
+import com.alibaba.dubbo.qos.command.impl.Ls;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,6 +13,8 @@ import java.util.stream.Stream;
 public class J8 {
 
     public static void main(String [] args) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+
+        Logger logger = LoggerFactory.getLogger(J8.class);
 
         List<String> ciel = new ArrayList<>();
         ciel.add("ciel");
@@ -51,8 +57,9 @@ public class J8 {
         String reduce = ciel.stream().reduce("//", (x, y) -> x + y); //把所有结果相加,所有元素+前面的默认值
         //其实是对每一个元素都做了运算
 
+        Stream.of(1,8,6).mapToInt(t -> t).summaryStatistics().getAverage(); //平均值
+        //           .getMax() .getcount() .getsum()
 
-        Stream.of(1,8,6).mapToInt(t -> t).forEach(System.err::println); //原本就是integer可以用int 减少装箱
 
         ciel.stream().toArray(); //收集到数组中
         ciel.stream().collect(Collectors.toList()); //收集到集合中
@@ -132,7 +139,19 @@ public class J8 {
         long count1 = Stream.ofNullable(null).count();//空stream
         System.err.println("uu"+count1);
 
-        
+
+        //数组扁平化
+
+        List<List> lsn = new ArrayList<>();
+        lsn.add(List.of("a","b"));
+        lsn.add(List.of("c","d"));
+
+        Object collect7 = lsn.stream().flatMap(t -> t.stream()).collect(Collectors.toList());
+        System.out.println(collect7);
+
+        Stream<UUID> generate = Stream.generate(UUID::randomUUID); //生成stream流
+        generate.limit(50).forEach(t -> logger.info(t.toString()));
+
     }
 
 

@@ -33,33 +33,39 @@ public class Kafka {
 
     //一个组里的消费者不能消费同一个分区的数据
 
-
     //实际上所有的配置实现都是在org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration中完成
     @Autowired
-    private KafkaTemplate<String,Object> kafkaTemplate;
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
-    @Scheduled(cron = "0/30 0/2 * * * ?")
+    @Scheduled(cron = "0/30 1 0/1 * * ?")
     public void send() throws JsonProcessingException {
 
         kafkaTemplate.setProducerListener(producerListener()); //设置回调
-       // kafkaTemplate.set
-
+        // kafkaTemplate.set
 
         KafkaMsg message = new KafkaMsg();
         message.setId(System.currentTimeMillis());
-        message.setMsg(UUID.randomUUID().toString().replace("-","").toUpperCase());
+        message.setMsg(UUID.randomUUID().toString().replace("-", "").toUpperCase());
         message.setDateTime(LocalDateTime.now());
 
-        if(message.getId()%2==0){
+        kafkaTemplate.executeInTransaction(t -> { //事务内发送
+            try {
+                if (message.getId() % 2 == 0) {
 
-            ListenableFuture<SendResult<String, Object>> obj =
-                    kafkaTemplate.send("cielswift",0,null, format.writeValueAsString(message));
-        }else{
+                    ListenableFuture<SendResult<String, Object>> obj =
+                            kafkaTemplate.send("cielswift", 0, null, format.writeValueAsString(message));
+                } else {
 
-            ListenableFuture<SendResult<String, Object>> obj =
-                    kafkaTemplate.send("cielswift",1,null, format.writeValueAsString(message));
-        }
+                    ListenableFuture<SendResult<String, Object>> obj =
+                            kafkaTemplate.send("cielswift", 1, null, format.writeValueAsString(message));
+                }
 
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException("AA");
+            }
+
+            return true;
+        });
         //send方法后面调用get方法即可 ,同步; 可以重载规定时间没有返回报错;
         return;
     }
@@ -67,24 +73,24 @@ public class Kafka {
 
     @Bean
     @Primary
-    public ProducerListener producerListener(){ //回调类
-        return new ProducerListener(){
+    public ProducerListener producerListener() { //回调类
+        return new ProducerListener() {
             @Override
             public void onSuccess(ProducerRecord producerRecord, RecordMetadata recordMetadata) {
-                log.info("Message send success : " + producerRecord.toString());
+                log.info("发送成功 : " + producerRecord.toString());
             }
 
             @Override
             public void onError(ProducerRecord producerRecord, Exception exception) {
-                log.info("Message send error : " + producerRecord.toString());
+                log.info("发送错误 : " + producerRecord.toString());
             }
         };
     }
 
     @Bean
     @Primary
-    public Partitioner partitioner(){ //分区器
-        return new Partitioner(){
+    public Partitioner partitioner() { //分区器
+        return new Partitioner() {
 
             @Override
             public void configure(Map<String, ?> configs) {
@@ -98,6 +104,7 @@ public class Kafka {
 
                 return 0;
             }
+
             @Override
             public void close() {
 
@@ -106,8 +113,8 @@ public class Kafka {
     }
 
     @Bean
-    public ProducerInterceptor producerInterceptor(){ //拦截器
-        return new ProducerInterceptor(){
+    public ProducerInterceptor producerInterceptor() { //拦截器
+        return new ProducerInterceptor() {
 
             @Override
             public void configure(Map<String, ?> configs) {
@@ -117,7 +124,7 @@ public class Kafka {
             @Override
             public ProducerRecord onSend(ProducerRecord record) {
 
-                return new ProducerRecord(record.topic(),record.partition(),record.key(),record.value()+"AA"+System.currentTimeMillis());
+                return new ProducerRecord(record.topic(), record.partition(), record.key(), record.value() + "AA" + System.currentTimeMillis());
             }
 
             @Override

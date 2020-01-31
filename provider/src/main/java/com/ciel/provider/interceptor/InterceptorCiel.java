@@ -30,7 +30,6 @@ public class InterceptorCiel extends HandlerInterceptorAdapter {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
         //第二个执行 :在执行controller的处理后，在ModelAndView处理前执行
         //在请求完成后,但是(DispatcherServlet)还没有向客户端响应前调用;
 

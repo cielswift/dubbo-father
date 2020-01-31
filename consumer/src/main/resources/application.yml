@@ -15,8 +15,7 @@ spring:
 
   kafka:
     # 指定kafka server的地址，集群配多个，中间，逗号隔开
-    bootstrap-servers: 127.0.0.1:9920,127.0.0.1:9921,127.0.0.1:9922
-
+    bootstrap-servers: hadoop.master:9920,hadoop.slave1:9920,hadoop.slave2:9920
 
     # 写入失败时，重试次数。当leader节点失效，一个repli节点会替代成为leader节点，此时可能出现写入失败，
     # 当retris为0时，produce不会重复。retirs重发，此时repli节点完全成为leader节点，不会产生消息丢失。
@@ -34,7 +33,7 @@ spring:
     #可以设置的值为：all, -1, 0, 1
 
     # 指定消息key和消息体的编解码方式
-
+    
     consumer:
       group-id: ciel-group # 指定默认消费者group id --> 由于在kafka中，同一组中的consumer不会读取到同一个消息，依靠groud.id设置组名
 
@@ -61,7 +60,7 @@ dubbo:
   application:
     name: app-consumer  #服务名称
   registry:
-    address: 127.0.0.1:21810,127.0.0.1:21811,127.0.0.1:21812 #注册中心地址
+    address: hadoop.master:21810,hadoop.slave1:21810,hadoop.slave2:21810 #注册中心地址
     protocol: zookeeper
     check: false  #启动不检查注册中心
 #  protocol:

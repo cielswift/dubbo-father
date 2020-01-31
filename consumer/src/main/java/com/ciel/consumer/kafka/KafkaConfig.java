@@ -11,18 +11,18 @@ import org.springframework.kafka.listener.ContainerProperties;
 @Configuration
 public class KafkaConfig {
 
-    @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>>
-    kafkaListenerContainerFactory(ConsumerFactory<String, String> consumerFactory) {
-
-        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory);
-        factory.getContainerProperties().setPollTimeout(1500);
-        //配置手动提交offset
-        factory.getContainerProperties().setAckMode((ContainerProperties.AckMode.MANUAL));
-
-        return factory;
-    }
+//    @Bean
+//    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>>
+//    kafkaListenerContainerFactory(ConsumerFactory<String, String> consumerFactory) {
+//
+//        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
+//        factory.setConsumerFactory(consumerFactory);
+//        factory.getContainerProperties().setPollTimeout(1500);
+//        //配置手动提交offset
+//        factory.getContainerProperties().setAckMode((ContainerProperties.AckMode.MANUAL));
+//
+//        return factory;
+//    }
 }
 //    RECORD
 //            每处理一条commit一次

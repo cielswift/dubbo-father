@@ -22,6 +22,8 @@ public class MyShiroRealm extends AuthorizingRealm {
     @Autowired
     private UserService userService;
 
+    //FormAuthenticationFilter
+
     //权限信息，包括角色以及权限
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {

@@ -3,6 +3,7 @@ package com.ciel.provider.shiro;
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.authz.annotation.*;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -36,6 +37,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/aa/**", "anon");
         filterChainDefinitionMap.put("/dfs/**", "anon"); //hdfs
 
+        filterChainDefinitionMap.put("/csor/**", "anon");
         //anon 无需认证即可访问;
         //authc 认证才能访问;
         //user RememberMe 可以访问;
@@ -58,6 +60,13 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
+
+
+//        @RequiresGuest 只有游客可以访问  
+//        @RequiresAuthentication 需要登录才能访问  
+//        @RequiresUser 已登录的用户或“记住我”的用户能访问  
+//        @RequiresRoles 已登录的用户需具有指定的角色才能访问  
+//        @RequiresPermissions 已登录的用户需具有指定的权限才能访问（如果不想和产品经理华山论剑，推荐用这个注解）
     }
 
     /**

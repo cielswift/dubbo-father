@@ -20,25 +20,30 @@ import javax.annotation.PostConstruct;
 @Component
 public class KafkaLince {
 
-
     public static Logger log = LoggerFactory.getLogger(KafkaLince.class);
 
-    @KafkaListener(topics = "xiapeixin",
-            topicPartitions=@TopicPartition(topic = "xiapeixin",partitions = "0"
+    @KafkaListener(topics = "cielswift",groupId = "ciel-group",
+            topicPartitions=@TopicPartition(topic = "cielswift",
+            partitionOffsets = @PartitionOffset(partition = "0",initialOffset = "0")
             )) //监听哪一个分区
-    public void zeroMessage(ConsumerRecord<?, ?> cr, Acknowledgment ack,String message){
+    public void zeroMessage(ConsumerRecord message){
 
-        log.info("0号分区的数据:"+message);
+        log.info("==============================================================");
+        log.info("0号分区的数据:"+message.offset()+"=="+message.value());
+        log.info("==============================================================");
 
         //ack.acknowledge(); 手动提交
     }
 
+    @KafkaListener(topics = "cielswift",
+            topicPartitions=@TopicPartition(topic = "cielswift",
+             partitionOffsets = @PartitionOffset(partition = "0",initialOffset = "0")
+            )) //监听哪一个分区
+    public void oneMessage(ConsumerRecord message){
 
-    @KafkaListener(topics = "xiapeixin",
-            topicPartitions=@TopicPartition(topic = "xiapeixin",partitions = "1")) //监听哪一个分区
-    public void oneMessage(ConsumerRecord<?, ?> cr,Acknowledgment ack,String message){
-
-        log.info("1号分区的数据:"+message);
+        log.info("==============================================================");
+        log.info("1号分区的数据:"+message.offset()+"=="+message.value());
+        log.info("==============================================================");
     }
 
 

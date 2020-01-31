@@ -17,17 +17,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.awt.print.Book;
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+//@CrossOrigin(value = "*") //允许这个controller所有跨域
 public class HomeController {
 
     Logger logger = LoggerFactory.getLogger(getClass());
@@ -50,6 +52,23 @@ public class HomeController {
     @Autowired
     private ApplicationContext applicationContext;
 
+
+    //跨域
+   // @CrossOrigin(value = "http://127.0.0.1:2500") //某一个方法接受某一个域的请求,也可以加在controller上
+    @RequestMapping(value = "/csor",produces = MediaType.APPLICATION_JSON_VALUE)
+    public Map csor(Model model){
+
+        Map<String, Object> asMap = model.asMap(); //返回里面的所有数据
+
+        return  Map.of("name","xiapeixin");
+    }
+
+   //     ?aa.name=ss&bb.name=cc
+//    @PostMapping("/book") //配合@ControllerAdvice 全局数据预处理
+//    public void addBook(@ModelAttribute("bb") Book book, @ModelAttribute("aa") Author author) {
+//        System.out.println(book);
+//        System.out.println(author);
+//    }
 
     @RequestMapping({"/", "/index"})
     public ModelAndView index() {

@@ -3,6 +3,7 @@ package com.ciel.provider.j8;
 import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.Cipher;
+import java.math.BigDecimal;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -17,11 +18,13 @@ public class J8RSA {
 
     public static void main(String[] args) throws Exception {
 
+        //私钥加密, 私钥和公钥都可以解密;
+        //公钥加密, 只能私钥解密
+
 //        比如A和B都有一套自己的公钥和私钥，当A要给B发送消息时，
 //        先用B的公钥对消息加密，再对加密的消息使用A的私钥加签名，达到既不泄露也不被篡改，更能保证消息的安全性。
 //　　     总结：公钥加密、私钥解密、私钥签名、公钥验签。
 
-        genKeyPair();  //RSA 加密解密 签名
         //加密字符串
         String message = "xiapeixin";
 
@@ -40,11 +43,12 @@ public class J8RSA {
         String decryptG = decryptG(encryptS, publickey);
         System.out.println("公钥: 还原后的字符串为:" + decryptG);
 
-        String sign = sign(message, privatekey,"utf-8");
-        System.out.println("签名后的字符串:"+sign);
+        String sign = sign(message, privatekey, "utf-8");
+        System.out.println("签名后的字符串:" + sign);
 
-        boolean verify = verify(message,sign, publickey, "utf-8");
-        System.out.println("合法吗:"+verify);
+        boolean verify = verify(message, sign, publickey, "utf-8");
+        System.out.println("合法吗:" + verify);
+
     }
 
     private static Map<Integer, String> keyMap = new HashMap<Integer, String>();  //用于封装随机产生的公钥与私钥

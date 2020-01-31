@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -82,6 +83,31 @@ public class WebMvcConfig implements WebMvcConfigurer { //或者继承WebMvcConf
     }
 
 
+    //跨域设置
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*")  //允许所有跨域请求
+                .allowedMethods("*")
+                .allowedHeaders("*");
+
+        /** 表示本应用的所有方法都会去处理跨域请求，allowedMethods 表示允许通过的请求数，
+         * allowedHeaders 则表示允许的请求头。经过这样的配置之后，就不必在每个方法上单独配置跨域了。
+         */
+
+//        registry.addMapping("/**")
+//                .allowedOrigins("http://localhost:8081")
+//                .allowedMethods("*")
+//                .allowedHeaders("*");
+    }
+
+
+    /**
+     * 还有一种方式是 在 servlet上添加 @WebServlet(name="FirstServlet",urlPatterns="/first") 注解
+     * 在启动类上添加 @ServletComponentScan  表示 在springBoot启动时会扫描@WebServlet，并将该类实例化
+     * @return
+     */
+
     /** 注册三大组件*/
     @Bean
     @Lazy
@@ -92,6 +118,10 @@ public class WebMvcConfig implements WebMvcConfigurer { //或者继承WebMvcConf
         return slb;
     }
 
+    /**
+     *  @WebFilter  @ServletComponentScan
+     * @return
+     */
     @Bean
     @Lazy
     public FilterRegistrationBean filterRegistrationBean(){
@@ -102,6 +132,10 @@ public class WebMvcConfig implements WebMvcConfigurer { //或者继承WebMvcConf
         return frb;
     }
 
+    /**
+     * @WebListener 不需要@ServletComponentScan
+     * @return
+     */
     @Bean
     public ServletListenerRegistrationBean servletListenerRegistrationBean(){
         ServletListenerRegistrationBean slrb = new ServletListenerRegistrationBean();

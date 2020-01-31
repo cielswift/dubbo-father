@@ -33,12 +33,12 @@ public class AppServerImpl extends ServiceImpl<AppCrud, App> implements AppServi
     @Qualifier("cacheManagerJSON")
     private CacheManager cacheManagerJSON;
 
-
     @Override
     /**
      * 开启缓存,
      * cacheName/value 把返回结果放在哪几个缓存中, 比如放在 user缓存 app缓存
-     * key缓存的key,可以使用el表达式,使用方法名称 ,key = "#root.method.name";和keyGenerator2选1, KeyGenerator是自定义的key生成器(keyGenerator = "autoGenMy")
+     * key缓存的key,默认方法参数;可以使用el表达式,使用方法名称 ,key = "#root.method.name";和keyGenerator2选1, KeyGenerator是自定义的key生成器(keyGenerator = "autoGenMy")
+     *  #root.target 当前被调用对象; #root.targetClass 当前被调用对象class #root.args[0] 当前方法参数数组
      *condition 取出参数,当符合条件才会缓存, 可以使用el表达式,#a0第一个参数
      *unless : 符合条件否定缓存,可以使用el表达式, 返回结果为空 result==null
      * sync :是否异步模式
@@ -66,12 +66,12 @@ public class AppServerImpl extends ServiceImpl<AppCrud, App> implements AppServi
         return baseMapper.selectList(queryWrapper);
     }
 
-    @Override
     /**
      * key 指定要清楚的缓存; allEntries = true 删除myApN下的所有缓存;
-     * beforeInvocation: 是否在方法zh之前清楚缓存
+     * beforeInvocation: 是否在方法执行之前清楚缓存
      */
     @CacheEvict(value = "myApN",key ="'xia1'")
+    @Override
     public int remove(String id) {
 
         Cache myApN = cacheManagerJSON.getCache("myApN");
