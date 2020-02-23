@@ -14,8 +14,10 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.core.Ordered;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableDubbo(scanBasePackages = {"com.ciel.provider.server.impl"}) //开启基于注解的dubbo,扫描服务实现
 //@ImportResource  //导入一个资源配置文件,可以是duboo的
@@ -25,7 +27,30 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableRabbit  //开启基于注解的消息队列
 @EnableScheduling //开启定时任务,
 @EnableAsync //开启异步注解
-@EnableAspectJAutoProxy  //开启基于注解的aop
+
+/**
+ * 开启基于注解的aop
+ * exposeProxy=true 表示通过aop框架暴露该代理对象，aopContext能够访问;
+ *      然后就可以方法里获取当前类的代理对象;
+ *
+ *          private HelloServiceImpl getHelloServiceImpl() {
+ *           return AopContext.currentProxy() != null ? (HelloServiceImpl) AopContext.currentProxy() : this;
+ *          }
+ *
+ *  proxyTargetClass=true 使用cglib进行代理
+ */
+@EnableAspectJAutoProxy
+
+/**
+ * @Transactional 注解应该只被应用到 public 方法上
+
+ * 默认情况下，只有来自外部的方法调用才会被AOP代理捕获，
+ * 也就是，类内部方法调用本类内部的其他方法并不会引起事务行为，即使被调用方法使用@Transactional注解进行修饰。
+ *
+ * 开启事务,order指定aop的执行顺序,在其他aop(cache)之前执行;
+ */
+@EnableTransactionManagement(order = Ordered.HIGHEST_PRECEDENCE)
+
 
 @SpringBootApplication
 @MapperScan("com.ciel.mapper")

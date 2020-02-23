@@ -1,10 +1,9 @@
 package com.ciel.provider.aop;
 
-import org.springframework.context.annotation.AdviceMode;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@EnableTransactionManagement()  //纯注解事务
 @Configuration
 public class Tx {
 

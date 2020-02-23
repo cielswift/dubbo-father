@@ -12,7 +12,6 @@
         ${ew.customSqlSegment}
         </select>
 
-
     <update id="myChange">
         update ssh_application set ${ew.sqlSet} ${ew.customSqlSegment}
     </update>
