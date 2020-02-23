@@ -1,4 +1,4 @@
-package com.ciel.springcloudalibabaapi.retu.cglibproxy;
+package com.ciel.provider.j8.cglibproxy;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;

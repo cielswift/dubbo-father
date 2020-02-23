@@ -1,4 +1,4 @@
-package com.ciel.springcloudalibabaapi.retu.cglibproxy;
+package com.ciel.provider.j8.cglibproxy;
 
 public class Programmer {
     public void work(String name) {
