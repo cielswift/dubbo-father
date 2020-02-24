@@ -42,10 +42,6 @@ public class J8ANN<@TypeParam T> {
 
         long count = Files.lines(Paths.get("D:/as.txt"), Charset.forName("utf-8")).count(); //获取行数
 
-        // CopyOnWriteArrayList  适合 读多写少
-        //ConcurrentHashMap  //适合少量并发 线程安全
-        // ConcurrentSkipListMap //适合大量并发 线程安全
-
 
        // jhsdb jmap --heap --pid 1284
 
