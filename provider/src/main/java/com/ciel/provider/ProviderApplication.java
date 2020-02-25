@@ -8,9 +8,11 @@ import com.ciel.provider.common.SelectImp;
 import com.ciel.test.Contr;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
@@ -93,6 +95,13 @@ public class ProviderApplication {
 
  //   @Configurable(preConstruction = true) //这个注解的作用是：告诉Spring在构造函数运行之前将依赖注入到对象中
     //这就就算当前这个对象是new出来的, 内部的字段也能使用@Autowired自动注入了; 需要aspectj 和启动aspectjAOP;
+
+    /**
+     * 上下文环境
+     */
+//    @Autowired
+//    protected ConfigurableApplicationContext context;
+    //context.getEnvironment().getProperty("org.dromara.hmily.serializer")
 
     public static void main(String[] args) {
         SpringApplication.run(ProviderApplication.class, args);
