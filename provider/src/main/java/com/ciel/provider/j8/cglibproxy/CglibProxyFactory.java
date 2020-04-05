@@ -10,7 +10,6 @@ import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class CglibProxyFactory implements MethodInterceptor {
     private Object target;

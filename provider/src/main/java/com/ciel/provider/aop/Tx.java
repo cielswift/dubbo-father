@@ -35,4 +35,48 @@ public class Tx {
 //    no-rollback-for="":出现什么异常时不回滚
 //            timeout="-1" ; 超过该时间限制但事务还没有完成，则自动回滚事务
 //        			   -->
+
+
+    //------------------------------------------------------------------------------------
+
+//    propagation 代表事务的传播行为，默认值为 Propagation.REQUIRED，其他的属性信息如下：
+//
+//    Propagation.REQUIRED：如果当前存在事务，则加入该事务，如果当前不存在事务，则创建一个新的事务。( 也就是说如果A方法和B方法都添加了注解，在默认传播模式下，A方法内部调用B方法，会把两个方法的事务合并为一个事务 ）
+//
+//    Propagation.SUPPORTS：如果当前存在事务，则加入该事务；如果当前不存在事务，则以非事务的方式继续运行。
+//
+//    Propagation.MANDATORY：如果当前存在事务，则加入该事务；如果当前不存在事务，则抛出异常。
+//
+//    Propagation.REQUIRES_NEW：重新创建一个新的事务，如果当前存在事务，暂停当前的事务。( 当类A中的 a 方法用默认Propagation.REQUIRED模式，类B中的 b方法加上采用 Propagation.REQUIRES_NEW模式，然后在 a 方法中调用 b方法操作数据库，然而 a方法抛出异常后，b方法并没有进行回滚，因为Propagation.REQUIRES_NEW会暂停 a方法的事务 )
+//
+//    Propagation.NOT_SUPPORTED：以非事务的方式运行，如果当前存在事务，暂停当前的事务。
+//
+//    Propagation.NEVER：以非事务的方式运行，如果当前存在事务，则抛出异常。
+//
+//    Propagation.NESTED ：和 Propagation.REQUIRED 效果一样。
+//
+//    isolation 属性
+//    isolation ：事务的隔离级别，默认值为 Isolation.DEFAULT。
+//
+//    Isolation.DEFAULT：使用底层数据库默认的隔离级别。
+//
+//    Isolation.READ_UNCOMMITTED
+//
+//    Isolation.READ_COMMITTED
+//
+//    Isolation.REPEATABLE_READ
+//
+//    Isolation.SERIALIZABLE
+//
+//    timeout 属性
+//    timeout ：事务的超时时间，默认值为 -1。如果超过该时间限制但事务还没有完成，则自动回滚事务。
+//
+//    readOnly 属性
+//    readOnly ：指定事务是否为只读事务，默认值为 false；为了忽略那些不需要事务的方法，比如读取数据，可以设置 read-only 为 true。
+//
+//    rollbackFor 属性
+//    rollbackFor ：用于指定能够触发事务回滚的异常类型，可以指定多个异常类型。
+//
+//    noRollbackFor属性**
+//    noRollbackFor：抛出指定的异常类型，不回滚事务，也可以指定多个异常类型。
 }
