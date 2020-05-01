@@ -25,7 +25,6 @@ public class AppServerImpl extends ServiceImpl<AppCrud, App> implements AppServi
             throw new RuntimeException("fuck-------------");
         }
 
-
         List<App> list = super.list();
 
         App a = new App();

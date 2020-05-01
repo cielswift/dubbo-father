@@ -32,6 +32,7 @@ public class J8ANN<@TypeParam T> {
 
         } catch (Exception e) {
         }
+
         var xia = new J8ANN<>(); //类型推断
 
         FileInputStream file = new FileInputStream(new File("c:/ciel/a.txt"));

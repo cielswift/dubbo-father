@@ -20,7 +20,7 @@ public class Pay {
 
         AlipayTradePrecreateRequest request = new AlipayTradePrecreateRequest();//创建API对应的request类
         request.setBizContent("{" +
-                "    \"out_trade_no\":\"20197220010101002\"," +//商户订单号
+                "    \"out_trade_no\":\"2019722001000101002\"," +//商户订单号
                 "    \"total_amount\":\"88.88\"," +
                 "    \"subject\":\"Iphone6 16G\"," +
                 "    \"store_id\":\"NJ_001\"," +

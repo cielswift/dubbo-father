@@ -32,6 +32,7 @@ class Goodss {
     //一个锁上可以有多个Condition对象;
 
     public void produce(String name) throws Exception {
+
         loc.lock(); // (显式,手动的)获取锁;synchronized是隐式的锁;这个显式;
         try {
             while (flag) {

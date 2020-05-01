@@ -1,9 +1,13 @@
 package com.ciel.provider.j8;
 
 import com.alibaba.dubbo.qos.command.impl.Ls;
+import org.hibernate.validator.internal.util.privilegedactions.GetClassLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.ResourceUtils;
 
+import javax.ws.rs.GET;
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -151,6 +155,8 @@ public class J8 {
 
         Stream<UUID> generate = Stream.generate(UUID::randomUUID); //生成stream流
         generate.limit(50).forEach(t -> logger.info(t.toString()));
+
+
 
     }
 
